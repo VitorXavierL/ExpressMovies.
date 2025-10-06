@@ -1,0 +1,18 @@
+from .. import db
+
+class Filme(db.Model):
+    """
+    Modelo Filme - Representa a tabela 'filme' no banco de dados.
+    """
+    id = db.Column(db.Integer, primary_key=True)
+    titulo = db.Column(db.String(100), nullable=False)
+    diretor = db.Column(db.String(100), nullable=False)
+    ano = db.Column(db.Integer, nullable=False)
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "titulo": self.titulo,
+            "diretor": self.diretor,
+            "ano": self.ano
+        }
