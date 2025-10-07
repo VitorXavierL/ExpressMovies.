@@ -12,4 +12,4 @@ class Diretor(db.Model):
     filmes_id = db.Column(db.ForeignKey('filme.id'))
 
     def dici(self):
-        return {'id':self.id,'nome':self.nome,'data_nascimento':self.data_nasc,'filmes':self.filmes_id}
+        return {'id':self.id,'nome':self.nome,'data_nascimento':self.data_nasc,'filmes_id':self.filmes_id}
