@@ -1,4 +1,5 @@
 from app import create_app, db
+from app.models.filme import Filme
 
 app = create_app()
 
@@ -7,3 +8,7 @@ def create_db_command():
     
     db.create_all()
     print("Banco de dados criado com sucesso!")
+
+
+if __name__ == '__main__':
+   app.run(host='0.0.0.0',port=5000,debug=True)
