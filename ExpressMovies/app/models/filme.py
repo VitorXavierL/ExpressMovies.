@@ -4,6 +4,8 @@ class Filme(db.Model):
     """
     Modelo Filme - Representa a tabela 'filme' no banco de dados.
     """
+    __tablename__ = 'filmes'
+
     id = db.Column(db.Integer, primary_key=True)
     titulo = db.Column(db.String(100), nullable=False)
     diretor = db.Column(db.String(100), nullable=False)
