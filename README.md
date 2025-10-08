@@ -4,7 +4,7 @@ Este é o backend da aplicação ExpressMovies, responsável pela lógica de neg
 
 ## Proposta
 
-Esta API RESTful permite realizar operações de CRUD (Criar, Ler, Atualizar, Deletar) para uma entidade de filmes. Ela foi construída com Flask e utiliza um banco de dados SQLite para armazenar os dados.
+Esta API RESTful permite realizar operações de CRUD (Criar, Ler, Atualizar, Deletar) para uma entidade de filmes e diretor. Ela foi construída com Flask e utiliza um banco de dados SQLite para armazenar os dados.
 
 ## Stack de Tecnologias
 
