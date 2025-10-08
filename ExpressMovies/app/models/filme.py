@@ -1,4 +1,4 @@
-from .. import db
+from app.__init__ import db
 
 class Filme(db.Model):
     """
