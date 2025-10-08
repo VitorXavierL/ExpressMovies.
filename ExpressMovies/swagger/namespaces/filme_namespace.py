@@ -22,7 +22,7 @@ filme_ns.route('/')
 class FilmeResource(Resource):
     def get(self):
         '''Listar todos os filmes'''
-        return get_filme()
+        return get_filmes()
     
     def post(self):
         '''Cria um novo filme'''
