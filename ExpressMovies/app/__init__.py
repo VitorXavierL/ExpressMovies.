@@ -21,6 +21,8 @@ def create_app(config_class=Config):
     app.config.from_object(config_class)
 
     db.init_app(app)
+
+    api.init_app(app)
     
     from .routes.filmes_routes import filmes_bp
     from .routes.diretor_routes import diretor_blueprint
@@ -28,7 +30,7 @@ def create_app(config_class=Config):
     app.register_blueprint(diretor_blueprint)
 
     from swagger.swagger_config import configure_swagger
-    configure_swagger(api,app)
+    configure_swagger(api)
 
 
     return app
