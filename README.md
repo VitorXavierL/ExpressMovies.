@@ -19,7 +19,7 @@ Esta API RESTful permite realizar operações de CRUD (Criar, Ler, Atualizar, De
 
 1.  **Clone o repositório:**
     ```bash
-    git clone <url-do-seu-repositorio>
+    git clone <url-desse-repositorio>
     cd ExpressMovies
     ```
 
