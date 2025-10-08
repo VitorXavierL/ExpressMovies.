@@ -1,7 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from .config import Config
-from swagger.swagger_config import configure_swagger
 from flask_restx import Api
 
 
@@ -28,6 +27,7 @@ def create_app(config_class=Config):
     app.register_blueprint(filmes_bp)
     app.register_blueprint(diretor_blueprint)
 
+    from swagger.swagger_config import configure_swagger
     configure_swagger(api,app)
 
 
