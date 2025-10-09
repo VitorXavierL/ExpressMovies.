@@ -21,7 +21,7 @@ def buscar_diretor(id):
 @diretor_blueprint.route('/',methods=['POST'])
 def criar_diretor():
     data = request.get_json()
-    date = datetime.strptime(f'{data['data_nascimento']}',"%Y-%m-%d")
+    date = datetime.strptime(f'{data["data_nascimento"]}',"%Y-%m-%d")
     diretor = Diretor(id=int(data['id']),nome=data['nome'],data_nasc=(date.date()),filmes_id=data['filmes_id'])
     db.session.add(diretor)
     db.session.commit()
@@ -31,7 +31,7 @@ def criar_diretor():
 def atualizar_diretor(id):
     try:
         data = request.json
-        date = datetime.strptime(f'{data['data_nascimento']}',"%Y-%m-%d")
+        date = datetime.strptime(f'{data["data_nascimento"]}',"%Y-%m-%d")
         diretor = Diretor.query.get(id)
         diretor.id = data['id']
         diretor.nome = data['nome']
