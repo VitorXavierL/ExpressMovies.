@@ -35,7 +35,7 @@ def create_filme():
 def update_filme(filme_id):
     try:
         filme = Filme.query.get_or_404(filme_id)
-        dados = request.get_json()
+        dados = request.json
         filme.titulo = dados.get('titulo', filme.titulo)
         filme.diretor = dados.get('diretor', filme.diretor)
         filme.ano = dados.get('ano', filme.ano)
