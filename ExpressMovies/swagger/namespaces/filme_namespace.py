@@ -1,4 +1,4 @@
-from app.routes.filmes_routes import create_filme,delete_filme,get_filme,get_filmes,update_filme
+from app.models.filme import Filme,db
 from flask_restx import Resource,Namespace,fields
 
 filme_ns = Namespace('filmes',description='Operações relacionadas aos filmes')
@@ -22,26 +22,41 @@ class FilmeResource(Resource):
     @filme_ns.marshal_list_with(filme_model_output)
     def get(self):     
             '''Listar todos os filmes'''
-            return get_filmes()
+            return Filme.query.all()
         
     @filme_ns.expect(filme_model)
+    @filme_ns.marshal_with(filme_model_output,code=201)
     def post(self):
             '''Cria um novo filme'''
-            movie = filme_ns.payload
-            diretor = create_filme(movie)
-            return diretor,201
+            data = filme_ns.payload
+            filme_novo = Filme(id=data['id'],titulo=data['titulo'],diretor=data['diretor'],ano=data['ano'])
+            db.session.add(filme_novo)
+            db.session.commit()
+            return filme_novo
 
 @filme_ns.route('/<int:filme_id>')
 class FilmeIdResource(Resource):
     @filme_ns.marshal_with(filme_model_output)
     def get(self,filme_id):
         '''Retorna um filme'''
-        return get_filme(filme_id),200
+        filme = Filme.query.get(filme_id)
+        return filme
     
     @filme_ns.expect(filme_model)
+    @filme_ns.marshal_with(filme_model_output,code=201)
     def put(self,filme_id):
-        update_filme(filme_id),201
+        data = filme_ns.payload
+        filme = Filme.query.get(filme_id)
+        filme.id = data['id']
+        filme.titulo = data['titulo']
+        filme.diretor = data['diretor']
+        filme.ano = data['ano']
+        db.session.commit()
+        return filme
     
     def delete(self,filme_id):
-        return delete_filme(filme_id), 204
+        filme = Filme.query.get(filme_id)
+        db.session.delete(filme)
+        db.session.commit()
+        return ""
          
