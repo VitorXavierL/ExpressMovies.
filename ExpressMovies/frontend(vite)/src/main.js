@@ -10,9 +10,9 @@ const api = axios.create({
 // Operações de filmes
 export const getFilmes = () => api.get('/filmes');
 export const getFilme = (id) => api.get(`/filmes/${id}`)
-export const postFilmes = (data) => api.post('/filmes', data);
-export const putFilmes = (id,data) => api.put(`/filmes/${id}`,data)
-export const deleteFilmes = (id) => api.delete(`/filmes/${id}`)
+export const postFilme = (data) => api.post('/filmes', data);
+export const putFilme = (id,data) => api.put(`/filmes/${id}`,data)
+export const deleteFilme = (id) => api.delete(`/filmes/${id}`)
 
 // Operações de diretores
 export const getDiretores = () => api.get('/diretores');
