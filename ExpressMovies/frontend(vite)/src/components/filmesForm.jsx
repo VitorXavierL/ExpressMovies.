@@ -1,32 +1,26 @@
-import { useEffect,useState } from "react";
-import { getFilmes,postFilmes,putFilmes,deleteFilmes } from "../main";
+import { useState } from "react";
 
-function FormMovies(){
+function FormMovies({onMovieCreated}){
 
-const [form,setForm] = useState({id:"", titulo :"", diretor :"", ano: "" });
-const [filmeEdit,setMovieEdit] = useState(null) // para editar 
-const [filmeError, setFilmeError] = useState(null) // os erros que podem ocorrer
+const [dataForm,setDataForm] = useState({'id':'','titulo':'','diretor':'','ano':""});
 
-const getMovies = async() => {
-    
-  try{
-    const movies = await getFilmes(); // Usa a função getFIlmes para buscar todos os filmes
-    const response = movies.json(); // Transforma a resposta em um objeto JSON
 
-      if(!response.ok){
-        throw new Error('Falha na busca do Filme!');
-      }
-      setForm(response.data),
-      setFilmeError(null)
-  }catch(err){
-    console.log(err),
-    setFilmeError(true)
-  }
+function handleChange(e){
+    const {name,value} = e.target;
+
+    setDataForm(prevData => ({
+      ...prevData,
+      [name]:value
+    }))
 }
 
-useEffect(() => {
-     getMovies()
-},[])
+function handleSubmit(e){
+  e.preventDefault();
+
+  onMovieCreated(dataForm)
+  
+  setDataForm({"id":"","titulo":"","diretor":"","ano":""})
+}
 
 
 /* //Fetch API
@@ -34,18 +28,18 @@ useEffect(() => {
 
 return (
  <>
-  <form class="bg-red-900 font-bold text-white-15 rounded-lg p-15">
-    <h2>Filmes</h2>
-    <label class="m-4">ID: </label>
-    <input type="number" placeholder="Id do filme" value={form.id} required/><br/>
+  <form onSubmit={handleSubmit} class="bg-red-900 font-bold text-white-15 rounded-lg p-20" >   
+    <h2 class="font-bold text-white-15 text-3xl">Filmes🎞🎥</h2>
     <label class="m-4">Título: </label>
-    <input type="text" name="title" id="title" placeholder="Título do Filme:" value={form.name} required /><br/>
+    <input type="text" name="titulo" id="titulo" placeholder="Título do Filme:" value={dataForm.titulo} onChange={handleChange} required /><br/>
     <label class="m-4">Diretor: </label>
-    <input type="text" name="diretor" id="diretor" placeholder="Diretor do Filme"/><br/>
+    <input type="text" name="diretor" id="diretor" value={dataForm.diretor} placeholder="Diretor do Filme" onChange={handleChange} required/><br/>
     <label class="m-4">Ano: </label>
-    <input type="number" name="year" id="year" placeholder="Ano de lançamento"/>
+    <input type="number" name="ano" id="ano" value={dataForm.ano} placeholder="Ano de lançamento" onChange={handleChange} required/><br/>
+    <input type="submit"  value="Adicionar filme" class="bg-gray-500 p-3 rounded-lg"/>
+
   </form>
-  </>
+ </>
   );
 }
 
