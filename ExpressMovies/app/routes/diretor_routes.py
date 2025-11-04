@@ -2,15 +2,17 @@ from flask import request,Blueprint,jsonify
 from .. import db
 from ..models.diretor import Diretor
 from datetime import datetime
+from flask_cors import CORS
 
-diretor_blueprint = Blueprint('diretor_bp' ,__name__, url_prefix='/diretores')
+diretor_blueprint = Blueprint('diretor_bp' ,__name__, url_prefix='/api')
+CORS(diretor_blueprint)
 
-@diretor_blueprint.route('/',methods=['GET'])
+@diretor_blueprint.route('/diretores',methods=['GET'])
 def buscar_diretores():
     diretores = Diretor.query.all()
     return jsonify([diretor.dici() for diretor in diretores]),200
 
-@diretor_blueprint.route('/<int:id>',methods=['GET'])
+@diretor_blueprint.route('/diretores/<int:id>',methods=['GET'])
 def buscar_diretor(id):
     try:
         diretor = Diretor.query.get(id)
@@ -18,7 +20,7 @@ def buscar_diretor(id):
     except Exception:
         return jsonify({'Erro':'Diretor não encontrado'}),404
 
-@diretor_blueprint.route('/',methods=['POST'])
+@diretor_blueprint.route('/diretores/',methods=['POST'])
 def criar_diretor():
     data = request.get_json()
     date = datetime.strptime(f'{data["data_nascimento"]}',"%Y-%m-%d")
@@ -27,7 +29,7 @@ def criar_diretor():
     db.session.commit()
     return jsonify({'Sucesso':'diretor criado!!'}),201
 
-@diretor_blueprint.route('/<int:id>',methods=['PUT'])
+@diretor_blueprint.route('/diretores/<int:id>',methods=['PUT'])
 def atualizar_diretor(id):
     try:
         data = request.json
@@ -42,7 +44,7 @@ def atualizar_diretor(id):
     except Exception:
         return jsonify({'Erro':'diretor não foi encontrado'}),404
 
-@diretor_blueprint.route('/<int:id>',methods=['DELETE'])  
+@diretor_blueprint.route('/diretores/<int:id>',methods=['DELETE'])  
 def deletar_diretor(id):
     try:
         diretor = Diretor.query.get(id)
