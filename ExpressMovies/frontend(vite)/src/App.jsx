@@ -1,6 +1,6 @@
 import { useState,useEffect } from 'react'
 import reactLogo from './assets/react.svg'
-import { getFilmes ,postFilme ,putFilme ,deleteFilme} from "../src/main";
+import { getFilmes ,postFilme ,putFilme ,deleteFilme} from "./main";
 import './App.css'
 import FormMovies from './components/filmesForm';
 import Movies from './components/FilmesList';
