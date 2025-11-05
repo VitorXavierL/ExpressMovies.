@@ -42,20 +42,20 @@ return (
         { filmes.map((filme) => 
           filmeEdit === filme.id ? (
         <form onSubmit={handleEditSubmit}>
-         <div key={filme.id} className="border-r-gray-500">
-             <label>Título</label>
+         <div key={filme.id} className="border-black">
+             <label class='m-3'>Título</label>
              <input type="text" value={filmeEdited.titulo} name="titulo" onChange={handleChangeEdit}/><br />
-             <label>Diretor: {filme.diretor}</label>
+             <label class="m-3">Diretor</label>
              <input type="text" value={filmeEdited.diretor} name="diretor" onChange={handleChangeEdit}/><br />
-             <label>Ano: {filme.ano}</label>
-             <input type="number" value={filmeEdited.ano} name="ano" onChange={handleChangeEdit}/>
-             <button type="submit">Salvar</button>
-            <button onClick={() => (onDelete(filme.id))}>Deletar</button>
+             <label class="m-3">Ano:</label>
+             <input type="number" value={filmeEdited.ano} name="ano" onChange={handleChangeEdit}/><br />
+             <button type="submit">Salvar💾</button><br />
+            <button onClick={() => (onDelete(filme.id))}>Deletar🗑️</button>
          </div>
         </form>
           ) : (
             <div class="text-gray-400">
-              <p>Titulo: {filme.titulo}</p>
+              <p>Título: {filme.titulo}</p>
               <p>Diretor: {filme.diretor}</p>
               <p>Ano: {filme.ano}</p>
 
@@ -63,10 +63,10 @@ return (
                 setMovieEdit(filme.id);
                 setFilmeEdited(filme);
               }}>
-                Editar
+                Editar✏️
               </button>
 
-              <button onClick={() => onDelete(filme.id)}>Deletar</button>
+              <button onClick={() => onDelete(filme.id)}>Deletar🗑️</button>
             </div>
           )
        
