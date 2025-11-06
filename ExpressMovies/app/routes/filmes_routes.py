@@ -26,6 +26,7 @@ def create_filme():
     novo_filme = Filme(
         titulo=dados['titulo'],
         diretor=dados['diretor'],
+        genero=dados['genero'],
         ano=dados['ano']
     )
     db.session.add(novo_filme)
@@ -39,6 +40,7 @@ def update_filme(filme_id):
         dados = request.json
         filme.titulo = dados.get('titulo', filme.titulo)
         filme.diretor = dados.get('diretor', filme.diretor)
+        filme.genero = dados.get('genero',filme.genero)
         filme.ano = dados.get('ano', filme.ano)
         db.session.commit()
         return jsonify(filme.to_dict()), 200

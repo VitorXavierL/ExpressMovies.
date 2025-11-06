@@ -9,6 +9,7 @@ class Filme(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     titulo = db.Column(db.String(100), nullable=False)
     diretor = db.Column(db.String(100), nullable=False)
+    genero = db.Column(db.String(50),nullable=False)
     ano = db.Column(db.Integer, nullable=False)
     
     def to_dict(self):
@@ -16,5 +17,6 @@ class Filme(db.Model):
             "id": self.id,
             "titulo": self.titulo,
             "diretor": self.diretor,
+            "gênero":self.genero,
             "ano": self.ano
         }
