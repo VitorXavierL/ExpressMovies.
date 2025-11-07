@@ -6,10 +6,10 @@ from ..models.filme import Filme
 filmes_bp = Blueprint('filmes_bp', __name__, url_prefix='/api')
 CORS(filmes_bp)
 
-@filmes_bp.route('/filmes/', methods=['GET'])
+@filmes_bp.route('/filmes', methods=['GET'])
 def get_filmes():
     filmes = Filme.query.all()
-    return jsonify([filme.to_dict() for filme in filmes]), 200
+    return jsonify([filme.dici() for filme in filmes]), 200
 
 
 @filmes_bp.route('/filmes/<int:filme_id>', methods=['GET'])
@@ -20,7 +20,7 @@ def get_filme(filme_id):
     except Exception:
         return jsonify({'Erro':'Filme não encontrado'}),404
 
-@filmes_bp.route('/filmes/', methods=['POST'])
+@filmes_bp.route('/filmes', methods=['POST'])
 def create_filme():
     dados = request.get_json()
     novo_filme = Filme(
@@ -31,7 +31,7 @@ def create_filme():
     )
     db.session.add(novo_filme)
     db.session.commit()
-    return jsonify(novo_filme.to_dict()), 201
+    return jsonify(novo_filme.dici()), 201
 
 @filmes_bp.route('/filmes/<int:filme_id>', methods=['PUT'])
 def update_filme(filme_id):
@@ -39,11 +39,11 @@ def update_filme(filme_id):
         filme = Filme.query.get_or_404(filme_id)
         dados = request.json
         filme.titulo = dados.get('titulo', filme.titulo)
-        filme.diretor_id = dados.get('diretor_id', filme.diretor)
+        filme.diretor_id = dados.get('diretor_id', filme.diretor_id)
         filme.genero = dados.get('genero',filme.genero)
         filme.ano = dados.get('ano', filme.ano)
         db.session.commit()
-        return jsonify(filme.to_dict()), 200
+        return jsonify(filme.dici()), 200
     except Exception:
         return jsonify({"Erro":"Filme não encontrado"}),404
     

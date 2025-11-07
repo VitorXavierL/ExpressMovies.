@@ -20,11 +20,11 @@ def buscar_diretor(id):
     except Exception:
         return jsonify({'Erro':'Diretor não encontrado'}),404
 
-@diretor_blueprint.route('/diretores/',methods=['POST'])
+@diretor_blueprint.route('/diretores',methods=['POST'])
 def criar_diretor():
     data = request.get_json()
     date = datetime.strptime(f'{data["data_nascimento"]}',"%Y-%m-%d")
-    diretor = Diretor(nome=data['nome'],data_nascimento=(date.date()),filmes_id=list(data['filmes_id']))
+    diretor = Diretor(nome=data['nome'],data_nascimento=(date.date()))
     db.session.add(diretor)
     db.session.commit()
     return jsonify({'Sucesso':'diretor criado!!'}),201
@@ -36,8 +36,7 @@ def atualizar_diretor(id):
         date = datetime.strptime(f'{data["data_nascimento"]}',"%Y-%m-%d")
         diretor = Diretor.query.get(id)
         diretor.nome = data['nome']
-        diretor.data_nasc = date.date()
-        diretor.filmes_id = data['filmes_id']
+        diretor.data_nascimento = date.date()
         db.session.commit()
         return jsonify(diretor.dici()), 201
     except Exception:
