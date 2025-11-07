@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Movies({filmes,onDelete,onUpdate}){
+export default function Movies({filmes,onDelete,onUpdate}){
    const [filmeEdit,setMovieEdit] = useState(null) // para editar um filme específico
    const [filmeEdited,setFilmeEdited] = useState({})
    
@@ -46,7 +46,7 @@ return (
          <div className="border-black">
              <label class='m-3'>Título</label>
              <input type="text" value={filmeEdited.titulo} name="titulo" onChange={handleChangeEdit}/><br />
-             <label class="m-3">Diretor</label>
+             <label class="m-3">Id do Diretor</label>
              <input type="number" value={filmeEdited.diretor_id} name="diretor_id" onChange={handleChangeEdit}/><br />
              <label class="m-3">Gênero: </label>
              <input type="text"  value={filmeEdited.genero || ''} name="genero" onChange={handleChangeEdit}/><br />
@@ -59,7 +59,7 @@ return (
           ) : (
             <div key={filme.id} class="text-gray-400">
               <p>Título: {filme.titulo}</p>
-              <p>Diretor: {filme.diretor_id}</p>
+              <p>Id do Diretor: {filme.diretor_id}</p>
               <p>Gênero: {filme.genero}</p>
               <p>Ano: {filme.ano}</p>
 
@@ -80,6 +80,3 @@ return (
  
 )
 }
-
-
-export default Movies;

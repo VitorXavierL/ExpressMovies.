@@ -20,13 +20,17 @@ async function handleReturn(){
     const movies = await getFilmes(); // Usa a função getFilmes para buscar todos os filmes
     const diretores = await getDiretores(); // Usa a função getDiretores para buscar todos os diretores
 
-    setFilmes(movies.data),
+    setFilmes(movies.data);
     setFilmeError(null);
-
-    setDiretores(diretores.data),
-    setDiretorError(null)
+    console.log(movies.data);
+    
+    setDiretores(diretores.data);
+    setDiretorError(null);
+    console.log(diretores.data);
   }catch(err){
-    console.log(err),
+    console.log(err);
+    setFilmes([]);
+    setDiretores([]);
     setFilmeError(true);
   }
 }
@@ -37,8 +41,13 @@ async function handleCreateDirector(data){
    const new_director = response.data;
    
    setDiretores(prevDirector => [...prevDirector,new_director]);
+   setDiretorError(null)
+
+   await handleReturn();
+
   }catch(err){
-    setDiretorError(err.message);
+    setDiretorError('falha na criação',err.message);
+    console.error(err.message)
   }
 }
 
@@ -100,11 +109,15 @@ async function handleUpdate(id, new_data){
 }
 
 async function handleDeleteDirector(id){
-  await deleteDiretor(id);
+  try{
+    await deleteDiretor(id);
 
-  setDiretores(prevDirector=>{
-    return prevDirector.filter(director => director.id != id);
-  })
+    setDiretores(prevDirector=>{
+      return prevDirector.filter(director => director.id != id);
+    })
+}catch(err){
+  setDiretorError(err)
+}
 }
 
 async function handleDelete(id){
@@ -123,26 +136,28 @@ useEffect(() => {
 
 return (
 <>
-    <h1>Express Movies🎞🎥</h1>
+    <h1>Express Movies🎞🎥</h1><br />
+    <FormMovies 
+    onMovieCreated={handleCreate}
+    />
+    <h2>Lista de Filmes</h2>
     <Movies 
     filmes={filmes}
     onDelete={handleDelete}
     onUpdate={handleUpdate}
-    />
-    
-    <FormMovies 
-    onMovieCreated={handleCreate}
-    /> <br />
+    /> <br /><br />
 
+    <FormDiretor
+    onDirectorCreated={handleCreateDirector}
+    />
+
+    <h2>Lista de Diretores</h2>
     <Directors 
     diretores={diretores}
     onUpdate={handleUpdateDirector}
     onDelete={handleDeleteDirector}
     /> 
     
-    <FormDiretor
-    onDirectorCreated={handleCreateDirector}
-    />
 
 </>
     )  
