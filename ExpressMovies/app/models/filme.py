@@ -17,6 +17,6 @@ class Filme(db.Model):
             "id": self.id,
             "titulo": self.titulo,
             "diretor": self.diretor,
-            "gênero":self.genero,
+            "genero":self.genero,
             "ano": self.ano
         }
