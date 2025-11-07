@@ -8,7 +8,7 @@ class Filme(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     titulo = db.Column(db.String(100), nullable=False)
-    diretor = db.Column(db.String(100), nullable=False)
+    diretor_id = db.Column(db.Integer, db.ForeignKey('diretor.id'),nullable=False)
     genero = db.Column(db.String(50),nullable=False)
     ano = db.Column(db.Integer, nullable=False)
     
@@ -16,7 +16,7 @@ class Filme(db.Model):
         return {
             "id": self.id,
             "titulo": self.titulo,
-            "diretor": self.diretor,
+            "diretor": self.diretor_id,
             "genero":self.genero,
             "ano": self.ano
         }

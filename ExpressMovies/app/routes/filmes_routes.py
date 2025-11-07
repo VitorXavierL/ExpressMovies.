@@ -25,7 +25,7 @@ def create_filme():
     dados = request.get_json()
     novo_filme = Filme(
         titulo=dados['titulo'],
-        diretor=dados['diretor'],
+        diretor_id=dados['diretor_id'],
         genero=dados['genero'],
         ano=dados['ano']
     )
@@ -39,7 +39,7 @@ def update_filme(filme_id):
         filme = Filme.query.get_or_404(filme_id)
         dados = request.json
         filme.titulo = dados.get('titulo', filme.titulo)
-        filme.diretor = dados.get('diretor', filme.diretor)
+        filme.diretor_id = dados.get('diretor_id', filme.diretor)
         filme.genero = dados.get('genero',filme.genero)
         filme.ano = dados.get('ano', filme.ano)
         db.session.commit()
