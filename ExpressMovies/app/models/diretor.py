@@ -12,4 +12,4 @@ class Diretor(db.Model):
     filmes = db.relationship('Filme',backref="diretor",lazy='dynamic')
 
     def dici(self):
-        return {'id':self.id,'nome':self.nome,'data_nascimento':self.data_nascimento,'filmes':[filme.dici() for filme in self.filmes.all()]}
+        return {'id':self.id,'nome':self.nome,'data_nascimento':str(self.data_nascimento),'filmes':[filme.dici() for filme in self.filmes]}

@@ -12,11 +12,11 @@ class Filme(db.Model):
     genero = db.Column(db.String(50),nullable=False)
     ano = db.Column(db.Integer, nullable=False)
     
-    def to_dict(self):
+    def dici(self):
         return {
             "id": self.id,
             "titulo": self.titulo,
-            "diretor": self.diretor_id,
+            "diretor_id": self.diretor_id,
             "genero":self.genero,
             "ano": self.ano
         }
