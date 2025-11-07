@@ -1,24 +1,44 @@
 import { useState,useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import { getFilmes ,postFilme ,putFilme ,deleteFilme} from "./main";
+import {getDiretores, postDiretor, putDiretor, deleteDiretor} from './main'
 import './App.css'
 import FormMovies from './components/filmesForm';
 import Movies from './components/FilmesList';
+import Directors from './components/DiretorList'
+import FormDiretor  from './components/DiretorForm';
 
-export function App() { 
+export default function App() { 
 
-const [filmes,setFilmes] = useState([]); // 
+const [filmes,setFilmes] = useState([]); // armazena em um array os filmes
 const [filmeError, setFilmeError] = useState(null); // os erros que podem ocorrer
+const [diretores,setDiretores] = useState([]) // armazena em um array os diretores
+const [diretorError, setDiretorError] = useState(null) //Erros relacionados a diretor
 
 async function handleReturn(){
   try{
     const movies = await getFilmes(); // Usa a função getFilmes para buscar todos os filmes
+    const diretores = await getDiretores(); // Usa a função getDiretores para buscar todos os diretores
 
     setFilmes(movies.data),
     setFilmeError(null);
+
+    setDiretores(diretores.data),
+    setDiretorError(null)
   }catch(err){
     console.log(err),
     setFilmeError(true);
+  }
+}
+
+async function handleCreateDirector(data){
+  try{
+   const response = await postDiretor(data);
+   const new_director = response.data;
+   
+   setDiretores(prevDirector => [...prevDirector,new_director]);
+  }catch(err){
+    setDiretorError(err.message);
   }
 }
 
@@ -32,6 +52,27 @@ async function handleCreate(data){
    console.log("Dados " ,data)
   }catch(err){
     setFilmeError(err.message);
+  }
+}
+
+async function handleUpdateDirector(id , new_data){
+  try{
+  const response = await putDiretor(id,new_data);
+  const directorUpdated = response.data;
+
+  setDiretores(prevDirector =>{
+      return prevDirector.map(director =>{
+        if(director.id == id){
+          return directorUpdated
+        }
+        return director
+      })
+  }
+)
+  setDiretorError(null)
+
+}catch(err){
+     setDiretorError(err.message)
   }
 }
 
@@ -53,9 +94,17 @@ async function handleUpdate(id, new_data){
   
       }catch(erro){
         setFilmeError(erro.message)
-      }
-    
+
+      } 
   
+}
+
+async function handleDeleteDirector(id){
+  await deleteDiretor(id);
+
+  setDiretores(prevDirector=>{
+    return prevDirector.filter(director => director.id != id);
+  })
 }
 
 async function handleDelete(id){
@@ -80,11 +129,22 @@ return (
     onDelete={handleDelete}
     onUpdate={handleUpdate}
     />
+    
     <FormMovies 
     onMovieCreated={handleCreate}
+    /> <br />
+
+    <Directors 
+    diretores={diretores}
+    onUpdate={handleUpdateDirector}
+    onDelete={handleDeleteDirector}
+    /> 
+    
+    <FormDiretor
+    onDirectorCreated={handleCreateDirector}
     />
+
 </>
     )  
 
   }
-export default App;
