@@ -24,7 +24,7 @@ def buscar_diretor(id):
 def criar_diretor():
     data = request.get_json()
     date = datetime.strptime(f'{data["data_nascimento"]}',"%Y-%m-%d")
-    diretor = Diretor(id=int(data['id']),nome=data['nome'],data_nasc=(date.date()),filmes_id=data['filmes_id'])
+    diretor = Diretor(nome=data['nome'],data_nascimento=(date.date()),filmes_id=data['filmes_id'])
     db.session.add(diretor)
     db.session.commit()
     return jsonify({'Sucesso':'diretor criado!!'}),201
@@ -35,7 +35,6 @@ def atualizar_diretor(id):
         data = request.json
         date = datetime.strptime(f'{data["data_nascimento"]}',"%Y-%m-%d")
         diretor = Diretor.query.get(id)
-        diretor.id = data['id']
         diretor.nome = data['nome']
         diretor.data_nasc = date.date()
         diretor.filmes_id = data['filmes_id']
