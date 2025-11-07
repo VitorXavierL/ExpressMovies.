@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function FormMovies({onMovieCreated}){
 
-const [dataForm,setDataForm] = useState({'id':'','titulo':'','diretor':'','ano':""});
+const [dataForm,setDataForm] = useState({'id':'','titulo':'','diretor':'',"genero":"",'ano':""});
 
 
 function handleChange(e){
@@ -19,12 +19,11 @@ function handleSubmit(e){
 
   onMovieCreated(dataForm)
   
-  setDataForm({"id":"","titulo":"","diretor":"","ano":""})
+  setDataForm({"id":"","titulo":"","diretor":"","genero":"","ano":""})
 }
 
 
-/* //Fetch API
- */
+//Fetch API
 
 return (
  <>
@@ -34,6 +33,8 @@ return (
     <input type="text" name="titulo" id="titulo" placeholder="Título do Filme:" value={dataForm.titulo} onChange={handleChange} required /><br/>
     <label class="m-4">Diretor: </label>
     <input type="text" name="diretor" id="diretor" value={dataForm.diretor} placeholder="Diretor do Filme" onChange={handleChange} required/><br/>
+    <label class="m-4">Gênero: </label>
+    <input type="text" name="genero" id="genero" value={dataForm.genero} onChange={handleChange} placeholder="Gênero do Filme"/><br />
     <label class="m-4">Ano: </label>
     <input type="number" name="ano" id="ano" value={dataForm.ano} placeholder="Ano de lançamento" onChange={handleChange} required/><br/>
     <input type="submit"  value="Adicionar filme" class="bg-gray-500 p-3 rounded-lg"/>

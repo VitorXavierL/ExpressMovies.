@@ -22,6 +22,7 @@ function handleEditSubmit(e){
      const data = {
       titulo: filmeEdited.titulo,
       diretor: filmeEdited.diretor,
+      genero: filmeEdited.genero,
       ano: filmeEdited.ano
      };
 
@@ -41,12 +42,14 @@ return (
    <div class="bg-amber-800 rounded-b-lg space-y-5">
         { filmes.map((filme) => 
           filmeEdit === filme.id ? (
-        <form onSubmit={handleEditSubmit}>
-         <div key={filme.id} className="border-black">
+        <form key={filme.id} onSubmit={handleEditSubmit}>
+         <div className="border-black">
              <label class='m-3'>Título</label>
              <input type="text" value={filmeEdited.titulo} name="titulo" onChange={handleChangeEdit}/><br />
              <label class="m-3">Diretor</label>
              <input type="text" value={filmeEdited.diretor} name="diretor" onChange={handleChangeEdit}/><br />
+             <label class="m-3">Gênero: </label>
+             <input type="text"  value={filmeEdited.genero || ''} name="genero" onChange={handleChangeEdit}/><br />
              <label class="m-3">Ano:</label>
              <input type="number" value={filmeEdited.ano} name="ano" onChange={handleChangeEdit}/><br />
              <button type="submit">Salvar💾</button><br />
@@ -54,9 +57,10 @@ return (
          </div>
         </form>
           ) : (
-            <div class="text-gray-400">
+            <div key={filme.id} class="text-gray-400">
               <p>Título: {filme.titulo}</p>
               <p>Diretor: {filme.diretor}</p>
+              <p>Gênero: {filme.genero}</p>
               <p>Ano: {filme.ano}</p>
 
               <button onClick={() => {
