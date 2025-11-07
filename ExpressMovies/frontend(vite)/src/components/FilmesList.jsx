@@ -21,7 +21,7 @@ function handleEditSubmit(e){
      // objeto json que possui os campos do filme
      const data = {
       titulo: filmeEdited.titulo,
-      diretor: filmeEdited.diretor,
+      diretor: filmeEdited.diretor_id,
       genero: filmeEdited.genero,
       ano: filmeEdited.ano
      };
@@ -47,7 +47,7 @@ return (
              <label class='m-3'>Título</label>
              <input type="text" value={filmeEdited.titulo} name="titulo" onChange={handleChangeEdit}/><br />
              <label class="m-3">Diretor</label>
-             <input type="text" value={filmeEdited.diretor} name="diretor" onChange={handleChangeEdit}/><br />
+             <input type="number" value={filmeEdited.diretor_id} name="diretor_id" onChange={handleChangeEdit}/><br />
              <label class="m-3">Gênero: </label>
              <input type="text"  value={filmeEdited.genero || ''} name="genero" onChange={handleChangeEdit}/><br />
              <label class="m-3">Ano:</label>
@@ -59,7 +59,7 @@ return (
           ) : (
             <div key={filme.id} class="text-gray-400">
               <p>Título: {filme.titulo}</p>
-              <p>Diretor: {filme.diretor}</p>
+              <p>Diretor: {filme.diretor_id}</p>
               <p>Gênero: {filme.genero}</p>
               <p>Ano: {filme.ano}</p>
 

@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function FormMovies({onMovieCreated}){
 
-const [dataForm,setDataForm] = useState({'id':'','titulo':'','diretor':'',"genero":"",'ano':""});
+const [dataForm,setDataForm] = useState({'id':'','titulo':'','diretor_id':'',"genero":"",'ano':""});
 
 
 function handleChange(e){
@@ -19,7 +19,7 @@ function handleSubmit(e){
 
   onMovieCreated(dataForm)
   
-  setDataForm({"id":"","titulo":"","diretor":"","genero":"","ano":""})
+  setDataForm({"id":"","titulo":"","diretor_id":"","genero":"","ano":""})
 }
 
 
@@ -32,7 +32,7 @@ return (
     <label class="m-4">Título: </label>
     <input type="text" name="titulo" id="titulo" placeholder="Título do Filme:" value={dataForm.titulo} onChange={handleChange} required /><br/>
     <label class="m-4">Diretor: </label>
-    <input type="text" name="diretor" id="diretor" value={dataForm.diretor} placeholder="Diretor do Filme" onChange={handleChange} required/><br/>
+    <input type="number" name="diretor" id="diretor" value={dataForm.diretor_id} placeholder="Diretor do Filme" onChange={handleChange} required/><br/>
     <label class="m-4">Gênero: </label>
     <input type="text" name="genero" id="genero" value={dataForm.genero} onChange={handleChange} placeholder="Gênero do Filme"/><br />
     <label class="m-4">Ano: </label>
