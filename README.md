@@ -66,7 +66,7 @@ A parte do frontend do projeto foi feito usando a biblioteca React, que permite 
 
 ## Como rodar o front
 ``` bash
-    cd frontend
+    cd 'frontend(vite)'
     npm install
     npm run dev
 ``` 
