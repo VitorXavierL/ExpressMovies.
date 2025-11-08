@@ -66,5 +66,8 @@ A parte do frontend do projeto foi feito usando a biblioteca React, que permite 
 
 ## Como rodar o front
 ``` bash
-    cd frontend 
-    ``` 
+    cd frontend
+    npm install
+    npm run dev
+``` 
+O link indicado será `localhost:5173` , basta apertar 'ctrl' e clicar que ele direcionará para o navegador, onde estará rodando a parte do frontend.
