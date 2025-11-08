@@ -61,3 +61,10 @@ Esta API RESTful permite realizar operações de CRUD (Criar, Ler, Atualizar, De
 
 A API estará rodando e pronta para receber requisições em `http://127.0.0.1:5000`. Use ferramentas como Postman ou Insomnia para testar os endpoints.
 
+## FrontEnd
+A parte do frontend do projeto foi feito usando a biblioteca React, que permite criar interfaces de usuário, onde cada funcionalidade da aplicação foi dividida.
+
+## Como rodar o front
+``` bash
+    cd frontend 
+    ``` 
