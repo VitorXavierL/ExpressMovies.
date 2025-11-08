@@ -22,11 +22,9 @@ async function handleReturn(){
 
     setFilmes(movies.data);
     setFilmeError(null);
-    console.log(movies.data);
     
     setDiretores(diretores.data);
     setDiretorError(null);
-    console.log(diretores.data);
   }catch(err){
     console.log(err);
     setFilmes([]);
@@ -43,7 +41,7 @@ async function handleCreateDirector(data){
    setDiretores(prevDirector => [...prevDirector,new_director]);
    setDiretorError(null)
 
-   await handleReturn();
+   await handleReturn()
 
   }catch(err){
     setDiretorError('falha na criação',err.message);
@@ -136,11 +134,10 @@ useEffect(() => {
 
 return (
 <>
-    <h1>Express Movies🎞🎥</h1><br />
+    <h1>Express Movies🎞🎥🍿</h1><br />
     <FormMovies 
     onMovieCreated={handleCreate}
     />
-    <h2>Lista de Filmes</h2>
     <Movies 
     filmes={filmes}
     onDelete={handleDelete}
@@ -151,7 +148,6 @@ return (
     onDirectorCreated={handleCreateDirector}
     />
 
-    <h2>Lista de Diretores</h2>
     <Directors 
     diretores={diretores}
     onUpdate={handleUpdateDirector}

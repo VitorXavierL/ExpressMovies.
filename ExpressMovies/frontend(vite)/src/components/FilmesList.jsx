@@ -38,8 +38,9 @@ function handleEditSubmit(e){
    }
    
 return (
-  
    <div class="bg-amber-800 rounded-b-lg space-y-5">
+    <h2 class="font-bold">Lista de Filmes</h2>
+
         { filmes.map((filme) => 
           filmeEdit === filme.id ? (
         <form key={filme.id} onSubmit={handleEditSubmit}>

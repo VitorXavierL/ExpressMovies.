@@ -27,8 +27,8 @@ function handleSubmit(e){
 
 return (
  <>
-  <form onSubmit={handleSubmit} class="bg-red-900 font-bold text-white-15 rounded-lg p-20 border-black" >   
-    <h2 class="font-bold text-gray-15 text-3xl">Filmes🎞🎥</h2>
+  <form onSubmit={handleSubmit} class="bg-red-900 font-bold text-zinc-400 rounded-lg p-20 border-black" >   
+    <h2 class="font-bold text-gray-15 text-4xl">Filmes🎞🎥</h2>
     <label class="m-4">Título: </label>
     <input type="text" name="titulo" id="titulo" placeholder="Título do Filme:" value={dataForm.titulo} onChange={handleChange} required /><br/>
     <label class="m-4">Id do Diretor: </label>

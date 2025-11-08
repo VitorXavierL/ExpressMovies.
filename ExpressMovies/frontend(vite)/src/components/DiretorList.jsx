@@ -38,7 +38,9 @@ if(diretores.length === 0){
 
 
 return (
+    
     <div class="bg-amber-800 rounded-b-lg space-y-5">
+    <h2 class="font-bold">Lista de Diretores🎬</h2>
         { diretores.map((diretor)=> 
           diretorEdit === diretor.id ? (
           <form key={diretor.id} onSubmit={handleEditSubmit}>
