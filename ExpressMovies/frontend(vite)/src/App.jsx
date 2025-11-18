@@ -41,8 +41,6 @@ async function handleCreateDirector(data){
    setDiretores(prevDirector => [...prevDirector,new_director]);
    setDiretorError(null)
 
-   await handleReturn()
-
   }catch(err){
     setDiretorError('falha na criação',err.message);
     console.error(err.message)
