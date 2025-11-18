@@ -6,7 +6,6 @@ from datetime import datetime
 diretor_ns = Namespace('diretores',description='Operações relacionadas aos diretores')
 
 diretor_model = diretor_ns.model('Diretor',{
-    'id':fields.Integer(required=True,description='Id do diretor'),
     'nome':fields.String(required=True,description='nome do diretor'),
     'data_nascimento':fields.Date(required=False,description='data de nascimento do diretor')
     })
@@ -30,7 +29,7 @@ class DiretorResource(Resource):
         """Cria um novo diretor"""
         data = diretor_ns.payload
         date = datetime.strptime(f'{data["data_nascimento"]}',"%Y-%m-%d")
-        director = Diretor(id=data['id'],nome=data['nome'],data_nascimento=date.date())
+        director = Diretor(nome=data['nome'],data_nascimento=date.date())
         db.session.add(director)
         db.session.commit()
         return director
@@ -49,7 +48,6 @@ class DiretorIdResource(Resource):
       data = diretor_ns.payload()
       date = datetime.strptime(f'{data["data_nascimento"]}',"%Y-%m-%d")
       director = Diretor.query.get(id)
-      director.id = data['id']
       director.nome = data['nome']
       director.data_nascimento = date.date()
       db.session.commit()
