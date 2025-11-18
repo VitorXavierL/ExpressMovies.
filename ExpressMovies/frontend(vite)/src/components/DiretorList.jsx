@@ -59,7 +59,7 @@ return (
                     <p>Nome: {diretor.nome}</p>
                     <p>Data de Nascimento: {diretor.data_nascimento}</p>
                     <ul>Filmes:{
-                   diretor.filmes.length > 0 && (diretor.filme || [])? (
+                   (diretor.filmes.length > 0 && diretor.filme)? (
                     diretor.filmes.map(
                         filme => (
                             <li key={filme.id}>{filme.titulo}</li>
