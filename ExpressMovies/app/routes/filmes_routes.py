@@ -14,11 +14,9 @@ def get_filmes():
 
 @filmes_bp.route('/filmes/<int:filme_id>', methods=['GET'])
 def get_filme(filme_id):
-    try:
         filme = Filme.query.get_or_404(filme_id)
-        return jsonify(filme.to_dict()), 200
-    except Exception:
-        return jsonify({'Erro':'Filme não encontrado'}),404
+        return jsonify(filme.dici()), 200
+
 
 @filmes_bp.route('/filmes', methods=['POST'])
 def create_filme():
