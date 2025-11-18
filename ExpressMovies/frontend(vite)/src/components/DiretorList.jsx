@@ -21,6 +21,7 @@ function handleEditSubmit(e){
     e.preventDefault()
 
     const data = {
+        id:diretorEdited.id,
         nome: diretorEdited.nome,
         data_nascimento: diretorEdited.data_nascimento,
     }
@@ -33,21 +34,21 @@ function handleEditSubmit(e){
 }
 
 if(diretores.length === 0){
-    return <p class="text-red-600">Nenhum diretor foi adicionado ainda!!</p>
+    return <p className="text-red-600">Nenhum diretor foi adicionado ainda!!</p>
 }
 
 
 return (
     
-    <div class="bg-amber-800 rounded-b-lg space-y-5">
-    <h2 class="font-bold">Lista de Diretores🎬</h2>
+    <div className="bg-amber-800 rounded-b-lg space-y-5">
+    <h2 className="font-bold">Lista de Diretores🎬</h2>
         { diretores.map((diretor)=> 
           diretorEdit === diretor.id ? (
           <form key={diretor.id} onSubmit={handleEditSubmit}>
-           <div class="text-xl bg-gray-500">
-                <label class="m-3">Nome: </label>
+           <div className="text-xl bg-gray-500">
+                <label className="m-3">Nome: </label>
                 <input type="text" value={diretorEdited.nome} id="nome" name="nome" onChange={handleChangeEdit} /><br />
-                <label class="m-3">Data de Nascimento</label>
+                <label className="m-3">Data de Nascimento</label>
                 <input type="**date**" id="data_nascimento" name="data_nascimento" value={diretorEdited.data_nascimento} onChange={handleChangeEdit}/><br />
                 <button type="submit">Salvar💾</button>
                 <button onClick={() => onDelete(diretor.id)}>Deletar🗑️</button>

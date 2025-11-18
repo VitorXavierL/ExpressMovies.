@@ -34,31 +34,31 @@ function handleEditSubmit(e){
    }
    
    if(filmes.length === 0 ) {
-    return <p class="text-red-500">Nenhum filme está cadastrado ainda!!</p>
+    return <p className="text-red-500">Nenhum filme está cadastrado ainda!!</p>
    }
    
 return (
-   <div class="bg-amber-800 rounded-b-lg space-y-5">
-    <h2 class="font-bold">Lista de Filmes</h2>
+   <div className="bg-amber-800 rounded-b-lg space-y-5">
+    <h2 className="font-bold">Lista de Filmes</h2>
 
         { filmes.map((filme) => 
           filmeEdit === filme.id ? (
         <form key={filme.id} onSubmit={handleEditSubmit}>
          <div className="border-black">
-             <label class='m-3'>Título</label>
+             <label className='m-3'>Título</label>
              <input type="text" value={filmeEdited.titulo} name="titulo" onChange={handleChangeEdit}/><br />
-             <label class="m-3">Id do Diretor</label>
+             <label className="m-3">Id do Diretor</label>
              <input type="number" value={filmeEdited.diretor_id} name="diretor_id" onChange={handleChangeEdit}/><br />
-             <label class="m-3">Gênero: </label>
+             <label className="m-3">Gênero: </label>
              <input type="text"  value={filmeEdited.genero || ''} name="genero" onChange={handleChangeEdit}/><br />
-             <label class="m-3">Ano:</label>
+             <label className="m-3">Ano:</label>
              <input type="number" value={filmeEdited.ano} name="ano" onChange={handleChangeEdit}/><br />
              <button type="submit">Salvar💾</button><br />
             <button onClick={() => (onDelete(filme.id))}>Deletar🗑️</button>
          </div>
         </form>
           ) : (
-            <div key={filme.id} class="text-gray-400">
+            <div key={filme.id} className="text-gray-400">
               <p>Título: {filme.titulo}</p>
               <p>Id do Diretor: {filme.diretor_id}</p>
               <p>Gênero: {filme.genero}</p>
