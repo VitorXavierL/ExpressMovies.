@@ -1,19 +1,20 @@
 from app.models.filme import Filme,db
 from flask_restx import Resource,Namespace,fields
+from swagger.namespaces.diretor_namespaces import diretor_model
 
 filme_ns = Namespace('filmes',description='Operações relacionadas aos filmes')
 
 filme_model = filme_ns.model('Filme',{
     "id":fields.Integer(required=True,description='ID do filme'),
     "titulo":fields.String(required=True,description="Título do filme"),
-    "diretor": fields.String(required=True,description="O diretor do filme"),
+    "diretor": fields.Integer(required=True,description="O diretor do filme"),
     "ano": fields.Integer(required=True,description="Ano em que o filme foi lançado")
 })
 
 filme_model_output = filme_ns.model("Filme Output",{
     "id":fields.Integer(description="Id do filme"),
     "titulo": fields.String(description="Título do filme"),
-    "diretor": fields.String(description="Diretor do filme"),
+    "diretor": fields.Nested(diretor_model,description="Diretor do filme"),
     "ano": fields.Integer(description="Ano de lançamento")
 })
 
