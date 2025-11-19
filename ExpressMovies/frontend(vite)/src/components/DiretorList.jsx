@@ -20,8 +20,7 @@ function handleChangeEdit(e){
 function handleEditSubmit(e){
     e.preventDefault()
 
-    const data = {
-        id:diretorEdited.id,
+    const data = {  
         nome: diretorEdited.nome,
         data_nascimento: diretorEdited.data_nascimento,
     }
@@ -51,7 +50,7 @@ return (
                 <label className="m-3">Data de Nascimento</label>
                 <input type="**date**" id="data_nascimento" name="data_nascimento" value={diretorEdited.data_nascimento} onChange={handleChangeEdit}/><br />
                 <button type="submit">Salvar💾</button>
-                <button onClick={() => onDelete(diretor.id)}>Deletar🗑️</button>
+                <button type="button" onClick={() => onDelete(diretor.id)}>Deletar🗑️</button>
             </div>
           </form>
           ) : ( 
@@ -59,7 +58,7 @@ return (
                     <p>Nome: {diretor.nome}</p>
                     <p>Data de Nascimento: {diretor.data_nascimento}</p>
                     <ul>Filmes:{
-                   (diretor.filmes.length > 0 && diretor.filme)? (
+                   (diretor.filmes.length > 0 && diretor.filmes)? (
                     diretor.filmes.map(
                         filme => (
                             <li key={filme.id}>{filme.titulo}</li>
@@ -74,7 +73,7 @@ return (
                         setDiretorEdited(diretor)
                       }}>Editar✏️</button>
 
-                      <button onClick={() => onDelete(diretor.id)}>Deletar🗑️</button>
+                      <button type="button" onClick={() => onDelete(diretor.id)}>Deletar🗑️</button>
                 </div>           
           )
         
