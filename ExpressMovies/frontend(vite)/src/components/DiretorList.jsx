@@ -8,7 +8,7 @@ export default function Directors({diretores,onDelete,onUpdate}){
 function handleChangeEdit(e){
      const {name,value} = e.target;
 
-     setDiretorEdited(prevData =>(
+     setDiretorEdited(prevData => (
         {
         ...prevData ,
         [name]:value
@@ -46,15 +46,15 @@ return (
           <form key={diretor.id} onSubmit={handleEditSubmit}>
            <div className="text-xl bg-gray-500">
                 <label className="m-3">Nome: </label>
-                <input type="text" value={diretorEdited.nome} id="nome" name="nome" onChange={handleChangeEdit} /><br />
+                <input type="text" value={diretorEdited.nome || ''} id="nome" name="nome" onChange={handleChangeEdit} /><br />
                 <label className="m-3">Data de Nascimento</label>
-                <input type="**date**" id="data_nascimento" name="data_nascimento" value={diretorEdited.data_nascimento} onChange={handleChangeEdit}/><br />
+                <input type="date" id="data_nascimento" name="data_nascimento" value={diretorEdited.data_nascimento || ''} onChange={handleChangeEdit}/><br />
                 <button type="submit">Salvar💾</button>
                 <button type="button" onClick={() => onDelete(diretor.id)}>Deletar🗑️</button>
             </div>
           </form>
           ) : ( 
-                <div key={diretor.id} class="text-gray-400">
+                <div key={diretor.id} className="text-gray-400">
                     <p>Nome: {diretor.nome}</p>
                     <p>Data de Nascimento: {diretor.data_nascimento}</p>
                     <ul>Filmes:{

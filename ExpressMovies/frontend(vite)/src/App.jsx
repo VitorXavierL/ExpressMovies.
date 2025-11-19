@@ -23,22 +23,28 @@ async function handleReturn(){
     setFilmes(movies.data);
     setFilmeError(null);
     
-    setDiretores(diretores.data);
+    const dir = diretores.data.map(d=>({
+      ...d,
+      filmes: d.filmes || []
+    }))
+    setDiretores(dir);
     setDiretorError(null);
   }catch(err){
     console.log(err);
     setFilmes([]);
     setDiretores([]);
     setFilmeError(true);
+    setDiretorError(true)
   }
 }
 
 async function handleCreateDirector(data){
   try{
    const response = await postDiretor(data);
-   const new_director = response.data;
+   let new_director = response.data;
    
-   setDiretores(prevDirector => [...prevDirector,new_director]);
+   new_director = {...new_director, filmes: new_director.filmes || []};
+   setDiretores(prevDirector => [...prevDirector, new_director]);
    setDiretorError(null)
 
   }catch(err){
@@ -54,7 +60,7 @@ async function handleCreate(data){
 
    setFilmes(prevMovies => [...prevMovies, new_Movie]);
 
-   console.log("Dados " ,data)
+   //console.log("Dados " ,data)
   }catch(err){
     setFilmeError(err.message);
   }

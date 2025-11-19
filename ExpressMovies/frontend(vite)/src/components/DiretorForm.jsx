@@ -6,6 +6,8 @@ export default function FormDiretor({onDirectorCreated}){
 function handleChange(e){
    const {name,value} = e.target;
 
+   console.log("Campo: ",name," Valor: ",value)
+
    setForm(prevData => ({
       ...prevData,
       [name]:value
