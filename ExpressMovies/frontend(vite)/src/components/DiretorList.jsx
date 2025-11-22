@@ -46,9 +46,9 @@ return (
           <form key={diretor.id} onSubmit={handleEditSubmit}>
            <div className="text-xl bg-gray-500">
                 <label className="m-3">Nome: </label>
-                <input type="text" value={diretorEdited.nome || ''} id="nome" name="nome" onChange={handleChangeEdit} /><br />
+                <input type="text" key={diretor.id} value={diretorEdited.nome || ''} id="nome" name="nome" onChange={handleChangeEdit} /><br />
                 <label className="m-3">Data de Nascimento</label>
-                <input type="date" id="data_nascimento" name="data_nascimento" value={diretorEdited.data_nascimento || ''} onChange={handleChangeEdit}/><br />
+                <input type="date" key={diretor.id} id="data_nascimento" name="data_nascimento" value={diretorEdited.data_nascimento || ''} onChange={handleChangeEdit}/><br />
                 <button type="submit">Salvar💾</button>
                 <button type="button" onClick={() => onDelete(diretor.id)}>Deletar🗑️</button>
             </div>
@@ -70,7 +70,7 @@ return (
                     </ul>
                     <button onClick={() =>{
                         setDiretorEdit(diretor.id)
-                        setDiretorEdited(diretor)
+                        setDiretorEdited({id:diretor.id, nome:diretor.nome, data_nascimento:diretor.data_nascimento})
                       }}>Editar✏️</button>
 
                       <button type="button" onClick={() => onDelete(diretor.id)}>Deletar🗑️</button>
