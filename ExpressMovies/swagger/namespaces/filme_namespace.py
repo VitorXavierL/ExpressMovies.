@@ -49,7 +49,7 @@ class FilmeIdResource(Resource):
     @filme_ns.marshal_with(filme_model_output,code=201)
     def put(self,filme_id):
         data = filme_ns.payload
-        filme = Filme.query.get_or_404(filme_id)
+        filme = Filme.query.get(filme_id)
         filme.titulo = data['titulo']
         filme.diretor_id = data['diretor_id']
         filme.genero = data['genero']

@@ -5,7 +5,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN pip install --no-cache-dir flask flask_sqlalchemy flask-restx
+RUN pip install --no-cache-dir flask flask_sqlalchemy flask-restx flask_cors
 
 
 EXPOSE 5000
